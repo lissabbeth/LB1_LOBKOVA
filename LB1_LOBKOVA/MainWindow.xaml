@@ -1,0 +1,71 @@
+﻿<Window x:Class="LB1_LOBKOVA.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Калькулятор" Height="600" Width="400">
+
+    <Window.Resources>
+        <Style x:Key="CalcButton" TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Background" Value="#4682B4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="80"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Поле ввода/вывода -->
+        <TextBox Name="InputBox" HorizontalAlignment="Stretch" VerticalAlignment="Top" 
+                 FontSize="28" Height="60" Margin="10" Background="#F0F0F0" TextAlignment="Right"/>
+
+        <!-- Кнопка "=" -->
+        <Button Content="=" HorizontalAlignment="Right" VerticalAlignment="Top" 
+                FontSize="18" Height="50" Width="80" Margin="0,80,10,0" Click="Equals_Click" Style="{StaticResource CalcButton}"/>
+
+        <Grid Margin="10" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Кнопки функций -->
+            <Button Content="+" Grid.Row="0" Grid.Column="0" Style="{StaticResource CalcButton}" Click="Add_Click"/>
+            <Button Content="-" Grid.Row="0" Grid.Column="1" Style="{StaticResource CalcButton}" Click="Subtract_Click"/>
+            <Button Content="*" Grid.Row="0" Grid.Column="2" Style="{StaticResource CalcButton}" Click="Multiply_Click"/>
+            <Button Content="/" Grid.Row="1" Grid.Column="0" Style="{StaticResource CalcButton}" Click="Divide_Click"/>
+            <Button Content="1/x" Grid.Row="1" Grid.Column="1" Style="{StaticResource CalcButton}" Click="Inverse_Click"/>
+            <Button Content="√x" Grid.Row="1" Grid.Column="2" Style="{StaticResource CalcButton}" Click="SquareRoot_Click"/>
+            <Button Content="xⁿ" Grid.Row="2" Grid.Column="0" Style="{StaticResource CalcButton}" Click="Power_Click"/>
+            <Button Content="C" Grid.Row="2" Grid.Column="1" Style="{StaticResource CalcButton}" Click="Clear_Click"/>
+            <Button Content="Sin" Grid.Row="3" Grid.Column="0" Style="{StaticResource CalcButton}" Click="Sin_Click"/>
+            <Button Content="Cos" Grid.Row="3" Grid.Column="1" Style="{StaticResource CalcButton}" Click="Cos_Click"/>
+            <Button Content="Tan" Grid.Row="3" Grid.Column="2" Style="{StaticResource CalcButton}" Click="Tan_Click"/>
+        </Grid>
+
+        <!-- История вычислений -->
+        <ListBox Name="HistoryBox" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" 
+                 Height="100" Margin="10" Background="#F7F7F7" BorderBrush="#DDD"/>
+
+        <!-- Переключатель радианы/градусы -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,0,10,20">
+            <TextBlock Text="Режим:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <RadioButton Content="Градусы" GroupName="AngleMode" IsChecked="True" VerticalAlignment="Center" Checked="AngleMode_Checked"/>
+            <RadioButton Content="Радианы" GroupName="AngleMode" VerticalAlignment="Center" Checked="AngleMode_Checked"/>
+        </StackPanel>
+
+        <!-- Строка состояния -->
+        <StatusBar VerticalAlignment="Bottom">
+            <TextBlock Name="StatusBarText" Text=""/>
+        </StatusBar>
+    </Grid>
+</Window>
